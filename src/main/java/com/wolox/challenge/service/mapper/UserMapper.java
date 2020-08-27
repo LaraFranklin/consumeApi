@@ -7,6 +7,7 @@ import com.wolox.challenge.service.dto.AddressDto;
 import com.wolox.challenge.service.dto.CompanyDto;
 import com.wolox.challenge.service.dto.GeoDto;
 import com.wolox.challenge.service.dto.UserDto;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserMapper {
+
+    public UserMapper() {
+    }
 
     public UserDto toUserDto(User user){
         return new UserDto(
@@ -76,7 +80,6 @@ public class UserMapper {
                         userDto.getCompany().getBs(),
                         null
                 ),
-                null,
                 null,
                 null
 

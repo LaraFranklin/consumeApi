@@ -16,6 +16,8 @@ import java.util.Set;
 public class User implements Serializable {
 
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -51,9 +53,6 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user")
     private Set<Album> albums;
-
-    @ManyToMany
-    private Set<Album> albumsAccess;
 
     @OneToMany(mappedBy = "user")
     private Set<Post> posts;
