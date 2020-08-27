@@ -9,6 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class AddressDto implements Serializable {
 
+    private int id;
     private String street;
     private String suite;
     private String city;

@@ -9,10 +9,12 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompanyDto implements Serializable {
+public class CommentDto implements Serializable {
 
     private int id;
+    private int postId;
     private String name;
-    private String catchPhrase;
-    private String bs;
+    private String email;
+    private String body;
+
 }

@@ -55,5 +55,8 @@ public class User implements Serializable {
     @ManyToMany
     private Set<Album> albumsAccess;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Post> posts;
+
 
 }
