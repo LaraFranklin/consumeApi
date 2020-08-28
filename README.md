@@ -2,6 +2,11 @@
 
 Java / Maven / Postgres / Spring Boot (version 2.3) application.
 
+## Swagger2
+```
+        localhost:8081/swagger-ui.html 
+```
+
 ## How to Run 
 
 This application is packaged as a jar. You run it using the ```java -jar``` command.
