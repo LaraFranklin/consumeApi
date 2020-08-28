@@ -41,17 +41,6 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public Optional<AlbumDto> addAccessUser(int idAlbum, int idUser) {
-//        Album album = repositoryAlbum.findById(idAlbum).get();
-//        Set<User> users = album.getAccessAlbums();
-//        users.add(repositoryUser.findById(idUser).get());
-//        album.setAccessAlbums(users);
-//        album = repositoryAlbum.saveAndFlush(album);
-//        User user = repositoryUser.findById(idUser).get();
-//        Set<Album> albums = new HashSet<>();
-//        albums.add(album);
-//        user.setUserAccess(albums);
-//        repositoryUser.saveAndFlush(user);
-//        return albumMapper.toAlbumDto(album);
         return repositoryAlbum.findById(idAlbum).map(album -> {
                     Set<User> users;
                     if (album.getAccessAlbums() == null || album.getAccessAlbums().size() == 0) {
