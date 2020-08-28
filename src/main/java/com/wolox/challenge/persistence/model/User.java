@@ -1,21 +1,22 @@
 package com.wolox.challenge.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
-
-
 
 
     @Id
@@ -47,15 +48,21 @@ public class User implements Serializable {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private Set<Album> albums;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private Set<Post> posts;
 
 
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable
+//    private Set<Album> userAccess;
 }

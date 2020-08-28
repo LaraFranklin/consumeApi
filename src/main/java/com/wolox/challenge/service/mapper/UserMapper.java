@@ -7,10 +7,8 @@ import com.wolox.challenge.service.dto.AddressDto;
 import com.wolox.challenge.service.dto.CompanyDto;
 import com.wolox.challenge.service.dto.GeoDto;
 import com.wolox.challenge.service.dto.UserDto;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,7 +19,7 @@ public class UserMapper {
     public UserMapper() {
     }
 
-    public UserDto toUserDto(User user){
+    public UserDto toUserDto(User user) {
         return new UserDto(
                 user.getId(),
                 user.getName(),
@@ -49,14 +47,14 @@ public class UserMapper {
         );
     }
 
-    public Set<UserDto> toListUserDto(List<User> users){
-            return users.stream()
-                    .filter(Objects::nonNull)
-                    .map(this::toUserDto)
-                    .collect(Collectors.toSet());
+    public Set<UserDto> toListUserDto(Set<User> users) {
+        return users.stream()
+                .filter(Objects::nonNull)
+                .map(this::toUserDto)
+                .collect(Collectors.toSet());
     }
 
-    public static User toUser(UserDto userDto){
+    public static User toUser(UserDto userDto) {
         return new User(
                 userDto.getId(),
                 userDto.getName(),
@@ -74,7 +72,7 @@ public class UserMapper {
                         userDto.getAddress().getGeo().getLng()
                 ),
                 new Company(
-                    userDto.getCompany().getId(),
+                        userDto.getCompany().getId(),
                         userDto.getCompany().getName(),
                         userDto.getCompany().getCatchPhrase(),
                         userDto.getCompany().getBs(),
@@ -82,8 +80,6 @@ public class UserMapper {
                 ),
                 null,
                 null
-
-
         );
     }
 

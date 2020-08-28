@@ -17,7 +17,7 @@ public class AlbumMapper {
     @Autowired
     RepositoryUser repositoryUser;
 
-    public Album toAlbum(AlbumDto albumDto){
+    public Album toAlbum(AlbumDto albumDto) {
         return new Album(
                 albumDto.getId(),
                 albumDto.getTitle(),
@@ -27,7 +27,7 @@ public class AlbumMapper {
         );
     }
 
-    public AlbumDto toAlbumDto(Album album){
+    public AlbumDto toAlbumDto(Album album) {
         return new AlbumDto(
                 album.getUser().getId(),
                 album.getId(),
@@ -35,7 +35,7 @@ public class AlbumMapper {
         );
     }
 
-    public Set<AlbumDto> toListoAlbumDto(List<Album> albums){
+    public Set<AlbumDto> toListoAlbumDto(List<Album> albums) {
         return albums.stream()
                 .filter(Objects::nonNull)
                 .map(this::toAlbumDto)

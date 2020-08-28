@@ -1,6 +1,7 @@
 package com.wolox.challenge.service.imple;
 
 import com.wolox.challenge.persistence.model.Album;
+import com.wolox.challenge.persistence.model.User;
 import com.wolox.challenge.persistence.repository.RepositoryAlbum;
 import com.wolox.challenge.persistence.repository.RepositoryUser;
 import com.wolox.challenge.service.AlbumService;
@@ -9,6 +10,7 @@ import com.wolox.challenge.service.mapper.AlbumMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -39,10 +41,34 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public Optional<AlbumDto> addAccessUser(int idAlbum, int idUser) {
+//        Album album = repositoryAlbum.findById(idAlbum).get();
+//        Set<User> users = album.getAccessAlbums();
+//        users.add(repositoryUser.findById(idUser).get());
+//        album.setAccessAlbums(users);
+//        album = repositoryAlbum.saveAndFlush(album);
+//        User user = repositoryUser.findById(idUser).get();
+//        Set<Album> albums = new HashSet<>();
+//        albums.add(album);
+//        user.setUserAccess(albums);
+//        repositoryUser.saveAndFlush(user);
+//        return albumMapper.toAlbumDto(album);
         return repositoryAlbum.findById(idAlbum).map(album -> {
-            album.getAccessAlbums().add(repositoryUser.findById(idUser).get());
-            return albumMapper.toAlbumDto(repositoryAlbum.save(album));
-            }
+                    Set<User> users;
+                    if (album.getAccessAlbums() == null || album.getAccessAlbums().size() == 0) {
+                        users = new HashSet<>();
+                    } else {
+                        users = album.getAccessAlbums();
+                    }
+                    users.add(repositoryUser.findById(idUser).get());
+                    album.setAccessAlbums(users);
+                    album = repositoryAlbum.saveAndFlush(album);
+                    return albumMapper.toAlbumDto(album);
+                }
         );
+    }
+
+    @Override
+    public Album getById(int id) {
+        return repositoryAlbum.findById(id).get();
     }
 }
